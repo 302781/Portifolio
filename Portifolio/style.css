@@ -8,6 +8,7 @@
 html{
     scroll-behavior: smooth;
 }
+
 :root{
     --primary-color: #0066ff;
     --secondary-color: #c65db3;
@@ -122,9 +123,10 @@ h1{
 }
 .projetos-caixa{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px,
+     1fr));
     gap: 2rem;
-    max-width: 100px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 .projetos-card{
@@ -167,7 +169,7 @@ h1{
     padding: 6rem 2rem;
 }
 .contatos-titulos{
-    text-align:center;
+    text-align: center;
     font-size: 2.5rem;
     margin-bottom: 50px;
 }
@@ -175,7 +177,7 @@ h1{
 .formulario-contato{
     max-width: 600px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--claro);
     border-radius: 16px;
     backdrop-filter: blur(5px);
     padding: 2rem;
@@ -184,6 +186,7 @@ h1{
 }
 .campo-form{
     width: 100%;
+    margin-bottom: 1rem;
     padding: 1rem;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
@@ -192,7 +195,7 @@ h1{
     outline: none;
 }
 .campo-form:focus{
-    border-color: var(--tertiary-color);
+    border-color: var(--claro);
 }
 
 .grupo-form{
@@ -201,8 +204,8 @@ h1{
 }
 .botao-form{
     color: var(--claro);
-    background: linear-gradient(45deg, var(--tertiary-color)
-   (- -secondary-color));
+    background: linear-gradient(45deg, var(--claro)
+   (--secondary-color));
    padding: 1rem 2rem;
    border: none;
    border-radius: 8px;
@@ -213,7 +216,7 @@ h1{
 }
 .botao-form:hover{
     transform: translateY(-4px);
-    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 5px 15px var(--claro);
 }
 .particulas{
     position: fixed;
