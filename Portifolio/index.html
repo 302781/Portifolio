@@ -5,84 +5,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portifolio</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="particulas"></div>
+
     <div class="container">
         <nav class="navegaçao">
             <ul class="menu">
                 <li>
-                    <a href="index.html">Sobre Mim</a>
+                    <a href="index.html" class="menu-link">Sobre Mim</a>
                 </li>
                 <li>
-                    <a href="projetos.html">Projetos</a>
+                    <a href="projetos.html" class="menu-link">Projetos</a>
                 </li>
                 <li>
-                    <a href="contatos.html">Contato</a>
+                    <a href="contatos.html" class="menu-link">Contato</a>
                 </li>
             </ul>
         </nav>
         <header>
             <div class="center">
-                <img src="perfil.jpeg" alt="Foto de perfil" class="perfil">
+                <img src="perfil.jpeg" alt="Foto de perfil" class="foto-perfil">
             </div>
             <h1>Maria Vitoria</h1>
-            <h2>Desenvolvedora</h2>
+            <p class=" cabecalho-sub-titulo">Desenvolvedora full stack</p>
         </header>
-        <main>
-            <section>
-                <h3>Sobre Mim</h3>
-                <p>
-                    Sou uma pessoa muito dedicada e
-                    comprometida com o meu trabalho. Tenho um
-                    grande interesse em aprender e estou sempre
-                    em busca de novos conhecimentos e desafios.
-                    Gosto de trabalhar em equipe, pois acredito
-                    que a colaboração é fundamental para o
-                    crescimento mútuo.
-                </p>
-            </section>
-            <section>
-                <h3>Escolaridade</h3>
-                <p>
-                    CEM 414 - Ensino Medio Completo
-                    <br>
-                    UCB - Analise e Desenvolvimento de Sistemas incompeto
-                    <br>
-                </p>
-            </section>
-            <section>
-                <h3>Cursos</h3>
-                <p>
-                    <ul>
-                        <li>Administraçao - Senac</li>
-                        <li>Informatica - Senai</li>
-                        <li>Scrum Fundamentals - SCRUMstudy</li>
-                    </ul>
-                </p>
-            </section>
-            <footer>
-                <a href="https://github.com/302781" target="_blank" rel="noopener noreferrer">
-                    <img src="Github.svg" alt="GitHub logo">
+        <main id="inicio" class="cabecalho">
+            <section id="sebre" class="sobre">
+                <h2 class="sobre-titulo">Sobre Mim</h2>
+                <div class="sobre-caixa">
                     <p>
-                        Github
+                        Ola, sou uma pessoa muito dedicada e
+                        comprometida com o meu trabalho. Tenho um
+                        grande interesse em aprender e estou sempre
+                        em busca de novos conhecimentos e desafios.
+                        Gosto de trabalhar em equipe, pois acredito
+                        que a colaboração é fundamental para o
+                        crescimento mútuo.
                     </p>
-                </a>
-                <a href="https://github.com/302781" target="_blank" rel="noopener noreferrer">
-                    <img src="Github.svg" alt="GitHub logo">
-                    <p>
-                        Github
-                    </p>
-                </a>
-                <a href="https://github.com/302781" target="_blank" rel="noopener noreferrer">
-                    <img src="Github.svg" alt="GitHub logo">
-                    <p>
-                        Github
-                    </p>
-                </a>
-            </footer>
-        </main>
+            </section>
+    </div>
+    </main <section id="projetos" class="projetos">
+    <h2 class="projetos-titulo">Meus Projetos</h2>
+    <div class="projetos-caixa">
+
+        <div class="projetos-card">
+            <img src="./img/projeto1.jpeg" alt="projeto1" clas="projetos-imagem">
+            <div class="caixa-texto-projeto">
+                <h3 class="info-projetos">projeto1</h3>
+                <p class="paragrafo-projetos">
+                    t consectetur adipisicing elit. Minus impedit unde nihil, aliquid delectus
+                    pariatur quae alias exercitationem quibusdam blanditiis consequatur beatae expedita harum sit porro
+                    ratione hic quam dignissimos.</p>
+            </div>
+        </div>
+        <div class="projetos-card">
+            <img src="./img/projeto2.jpeg" alt="projeto2" class="projetos-imagem">
+            <div class="caixa-texto-projeto">
+                <h3 class="info-projetos">projeto2</h3>
+                <p class="paragrafo-projetos"> t. Minus impedit unde nihil, aliquid delectus
+                    pariatur quae alias exercitationem quibusdam blanditiis consequatur beatae expedita harum sit porro
+                    ratione hic quam dignissimos.</p>
+            </div>
+        </div>
+        <div class="projetos-card">
+            <img src="./img/projeto3.gif" alt="projeto3" class="projetos-imagem">
+            <div class="caixa-texto-projeto">
+                <h3 clas="info-projetos">projeto3</h3>
+                <p class="paragrafo-projetos"> t. Minus impedit unde nihil, aliquid delectus
+                    pariatur quae alias exercitationem quibusdam blanditiis consequatur beatae expedita harum sit
+                    porro
+                    ratione hic quam dignissimos.</p>
+            </div>
+        </div>
+    </div>
+    </section>
+    <section id="contatos" class="contatos">
+        <h2 class="contatos-titulo">Contato</h2>
+        <form class="formulario-contato">
+            <div class="grupo-form">
+                <input placeholder="nome">
+            </div>
+            <div class="grupo-form">
+                <input placeholder="Nome" class="campo-form">
+            </div>
+                <textarea class="grupo-form" placeholder="Digite dua mensagem"></textarea>
+        </div>
+        <button type="submit" class="botao-form ">Enviar Whatssap </button> 
+          
+        </form>
+        </div>
+    </section>
     </div>
 </body>
 
