@@ -75,20 +75,20 @@
         </div>
     </section>
     <section id="contatos" class="contatos">
-        <h2 class="contatos-titulo" style="text-align: center;">Contato<h2>
-                <form class="formulario-contato">
+        <h2 class="contatos-titulo" style="text-align: center">Contato<h2>
+                <form class="formulario-contato" id="formulario" onsubmit="enviarWhats(event)">
                      <form class="contato-form">
                     <div class="grupo-form">
-                        <input placeholder="Nome" class="campo-form">
+                        <input placeholder="Nome" class="campo-form" id="nome">
                     </div>
                     <div>
-                        <textarea class="grupo-form" placeholder="Digite sua mensagem"></textarea>
+                        <textarea class="grupo-form" placeholder="Digite sua mensagem" rows="4" id="mensagem"></textarea>
                     </div>
                     <button type="submit" class="botao-form ">Enviar Whatssap </button>
 
                 </form>
                  </form>
     </section>
+   <script src="script.js"></script>
 </body>
-
 </html>
