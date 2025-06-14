@@ -120,13 +120,12 @@ h1{
     font-size: 1.2rem;
 }
 .projetos{
-    padding: 6rem 2rem;
+    padding: 10rem 2rem;
 }
 .projetos-caixa{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px,
-     1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 5rem;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -158,6 +157,7 @@ h1{
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border: 2px solid var(--vidro);
     
 }
 .paragrafo-projetos{
