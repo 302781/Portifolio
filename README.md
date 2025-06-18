@@ -1,1 +1,1 @@
-Neste portfólio, você encontrará apenas projetos completos e operacionais.
+Neste portfólio, você encontrará o meu curriculo com os meus projetos.
