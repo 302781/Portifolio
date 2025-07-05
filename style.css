@@ -1,262 +1,591 @@
-* {
+/* Reset Básico e Box-Sizing Universal */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    Font-family: 'Arial', sans-serif;
 }
 
+/* Base HTML para scroll-behavior e overflow */
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* Garante que não haja rolagem horizontal na página inteira, a menos que seja intencional */
 }
 
+/* Variáveis CSS: Cores e Fontes */
 :root {
-    --primary-color: #0066ff;
-    --secondary-color: #c65db3;
-    --escuro: #000000;
-    --claro: #ffffff;
-    --maisEscuro: #1a1a1a;
-    --vidro: rgba(255, 255, 255, 0.1);
-    --tertiary-color: rgba(79, 70, 229, 0.3);
+    --primary-color: #8A2BE2; /* Roxo vibrante (Blue Violet) */
+    --secondary-color: #DA70D6; /* Roxo mais claro/rosa para destaque (Orchid) */
+    --accent-color: #4B0082; /* Roxo escuro, quase anil (Indigo) */
+    --text-light: #ffffff; /* Texto claro para fundos escuros */
+    --text-dark: #e0e0e0; /* Texto um pouco mais escuro, para contraste em elementos claros */
+    --bg-dark: #000000; /* Fundo preto absoluto */
+    --bg-darker: #1a1a1a; /* Fundo preto muito escuro (quase preto) */
+    --glass-effect: rgba(255, 255, 255, 0.1); /* Efeito vidro translúcido */
+    --gradient-purple: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    --gradient-button: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    
+    /* Variáveis para fontes - Lembre-se de importá-las no seu HTML via Google Fonts */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+
+    --light-text-color: #ffffff; /* Usada em skill-item */
 }
 
+/* Estilos Globais do Body */
 body {
-    color: var(--claro);
-    background-color: var(--escuro);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-light); /* Cor do texto padrão mais clara */
+    background-color: var(--bg-dark); /* Fundo preto */
+    overflow-x: hidden; /* Mantém a prevenção de rolagem horizontal */
 }
 
+/* Estilo Padrão para Todas as Seções */
+section {
+    padding: 8rem 2rem; /* Padding padrão para todas as seções */
+    max-width: 1200px; /* Largura máxima para centralização */
+    margin: 0 auto; /* Centraliza a seção na página */
+    text-align: center; /* Centraliza o conteúdo da seção por padrão */
+    opacity: 0; /* Inicialmente invisível para a animação de entrada JS (Intersection Observer) */
+    transform: translateY(30px); /* Inicialmente um pouco abaixo para a animação */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Transição para a animação */
+}
+
+/* Classe adicionada via JavaScript para animar a entrada da seção */
+section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Keyframes para Animações --- */
+@keyframes flutuar {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes moveParticles {
+    0% { background-position: 0% 0%, 100% 100%, 0% 0%; }
+    100% { background-position: 100% 100%, 0% 0%, 100% 100%; }
+}
+
+/* --- Navegação (Header) --- */
 .navegacao {
     position: fixed;
     top: 0;
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(0, 0, 0, 0.85); /* Fundo preto mais escuro e opaco */
+    backdrop-filter: blur(8px); /* Efeito de desfoque para o "vidro" */
+    -webkit-backdrop-filter: blur(8px);
     width: 100%;
-    z-index: 100;
-    padding: 1.5rem;
+    z-index: 1000;
+    padding: 1.2rem 0; /* Padding vertical */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6); /* Sombra mais forte */
+    animation: fadeIn 1s ease-out; /* Animação de fade-in no carregamento */
 }
 
 .menu {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centraliza os links horizontalmente */
     list-style: none;
-    gap: 3rem;
-
+    gap: 2.5rem; /* Espaçamento entre os itens do menu */
+    align-items: center; /* Alinha verticalmente os links */
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o menu dentro da navegação */
+    padding: 0 20px; /* Padding horizontal para evitar que os links colem nas bordas */
 }
 
 .menu-link {
     text-decoration: none;
-    color: var(--claro);
-    font-weight: 500;
+    color: var(--text-light);
+    font-weight: bold;
     position: relative;
-    padding: 0.5rem 0;
+    padding: 8px 15px; /* Mais padding para melhor área de clique */
+    transition: color 0.3s ease, transform 0.2s ease;
+    font-size: 1.1rem;
 }
 
-.menu-link::after {
+.menu-link::after { /* Efeito de sublinhado animado */
     content: '';
-    height: 2px;
+    height: 3px; /* Sublinhado um pouco mais grosso */
     width: 0;
     position: absolute;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(90deg, var(--primary-color), var(--tertiary-color));
-    transition: width 0.5s ease;
+    bottom: -5px; /* Abaixo do texto */
+    left: 50%; /* Começa no centro */
+    transform: translateX(-50%); /* Centraliza o sublinhado */
+    background: var(--gradient-purple); /* Gradiente para o sublinhado */
+    transition: width 0.4s ease-out;
 }
 
-.menu-link:hover::after {
+.menu-link:hover {
+    color: var(--secondary-color); /* Roxo claro no hover */
+    transform: translateY(-2px); /* Pequeno levantamento no hover */
+}
+
+.menu-link:hover::after,
+.menu-link.active::after { /* Adicione 'active' via JS para a página atual */
     width: 100%;
 }
 
+/* --- Logo --- */
+.logo {
+    font-family: var(--font-heading);
+    font-size: 2.2rem; /* Tamanho maior para o logo */
+    font-weight: bold;
+    color: var(--secondary-color); /* Logo em roxo claro */
+    text-shadow: 0 0 10px rgba(218, 112, 214, 0.7); /* Brilho mais intenso */
+    letter-spacing: 1px; /* Espaçamento entre letras */
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Pequeno zoom no logo */
+}
+
+/* --- Cabeçalho (Hero Section) --- */
 .cabecalho {
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    flex-direction: column; /* Empilha os itens verticalmente */
+    justify-content: center; /* Centraliza verticalmente o conteúdo */
+    align-items: center; /* Centraliza horizontalmente o conteúdo */
+    background: linear-gradient(135deg, var(--bg-dark), var(--accent-color)); /* Gradiente do preto para roxo escuro */
+    position: relative;
+    overflow: hidden; /* Para as partículas */
+    padding-top: 80px; /* Espaçamento para compensar o cabeçalho fixo */
 }
 
+.cabecalho-sub-titulo {
+    font-size: 1.8rem; /* Tamanho maior */
+    color: var(--text-light);
+    margin-bottom: 40px; /* Espaço abaixo do subtítulo */
+    animation: fadeIn 1.2s ease-out forwards;
+    animation-delay: 1s;
+}
+
+/* --- Foto de Perfil --- */
 .foto-perfil {
-    width: 350px;
-    height: 350px;
-    box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
-    border-radius: 50%;
-    border: 4px solid var(--vidro);
-    animation: flutuar 5s ease-in-out infinite;
+    width: 300px;
+    height: 300px;
+    object-fit: cover; /* Garante que a imagem preencha o círculo */
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.7); /* Sombra mais forte e roxa */
+    border-radius: 50%; /* Transforma em círculo */
+    border: 5px solid var(--secondary-color); /* Borda em roxo claro */
+    animation: flutuar 5s ease-in-out infinite; /* Animação de flutuação */
+    transition: border-color 0.3s ease;
 }
 
+.foto-perfil:hover {
+    border-color: var(--primary-color); /* Borda muda no hover */
+}
+
+/* --- Centralização Genérica --- */
 .center {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center; /* Centraliza o texto dentro do contêiner */
+    width: 100%; /* Garante que ele ocupe a largura total disponível do pai */
+    max-width: 800px; /* Limite a largura para não esticar demais */
+    margin: 0 auto; /* Centraliza o .center se ele tiver uma max-width */
+}
+
+/* --- Títulos H1 e H2 --- */
+h1, h2 {
+    font-family: var(--font-heading);
+    color: var(--secondary-color); /* Títulos em roxo claro */
+    margin-bottom: 20px;
+    text-shadow: 0 0 12px rgba(218, 112, 214, 0.5); /* Brilho mais forte */
 }
 
 h1 {
-    font-size: 3.5rem;
-    color: var(--secondary-color);
+    font-size: 4rem; /* Tamanho maior para o H1 */
     font-weight: bold;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    margin-top: 30px; /* Margem superior para espaçamento da foto */
+    margin-bottom: 20px; /* Margem inferior para espaçamento do subtítulo */
+    animation: slideInUp 1s ease-out forwards;
+    animation-delay: 0.5s;
 }
 
-.cabecalho-sub-titulo {
-    font-size: 1.5rem;
-    color: var(--claro);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
+/* --- Seção "Sobre" --- */
 .sobre {
-    padding: 6rem 2rem;
+    background-color: var(--bg-darker); /* Fundo mais escuro para a seção */
 }
 
 .sobre-titulo {
-    font-size: 3rem;
-    color: var(--claro);
+    font-size: 3.5rem; /* Título maior */
+    color: var(--text-light); /* Cor clara para o título */
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* Mais espaço */
+    text-shadow: 0 0 15px rgba(255,255,255,0.2); /* Sombra suave */
 }
 
 .sobre-caixa {
-    padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    border-radius: 16px;
-    border: 1px solid var(--vidro);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.05);
+    padding: 3rem; /* Mais padding interno */
+    max-width: 900px; /* Aumenta largura máxima */
+    margin: 0 auto; /* Garante que a caixa esteja centralizada */
+    border-radius: 20px; /* Mais arredondado */
+    border: 1px solid var(--glass-effect);
+    backdrop-filter: blur(15px); /* Efeito de desfoque mais intenso */
+    -webkit-backdrop-filter: blur(15px);
+    background-color: rgba(255, 255, 255, 0.08); /* Fundo mais claro para o efeito vidro */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Sombra mais pronunciada */
+    animation: slideInUp 1s ease-out forwards; /* Animação de entrada */
+    animation-delay: 0.2s;
 }
 
 .sobre-paragrafo {
-    text-align: center;
+    text-align: justify; /* Justifica o texto para um visual mais profissional */
     font-size: 1.2rem;
+    color: var(--text-dark);
 }
 
+/* --- Botão Genérico (.btn) --- */
+.btn {
+    background: var(--gradient-button); /* Gradiente para o botão */
+    color: var(--text-light);
+    padding: 15px 30px; /* Mais padding */
+    border-radius: 8px; /* Mais arredondado */
+    transition: all 0.3s ease; /* Transição para todas as propriedades */
+    display: inline-block;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.6); /* Sombra roxa mais forte */
+    animation: pulse 2s infinite ease-in-out; /* Animação de pulso */
+    animation-delay: 1.5s;
+    text-transform: uppercase; /* Texto em maiúsculas */
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: var(--gradient-purple); /* Muda o gradiente no hover */
+    transform: translateY(-7px) scale(1.03); /* Mais levantamento e zoom */
+    box-shadow: 0 8px 30px rgba(218, 112, 214, 0.8); /* Sombra mais intensa no hover */
+    animation: none; /* Remove o pulso no hover */
+}
+
+/* --- Botão de Aviso --- */
+.btn-warning {
+    background-color: var(--secondary-color); /* Roxo mais claro, chamativo */
+    color: var(--text-light); /* Texto branco */
+    cursor: default; /* Altera o cursor para indicar que não é clicável */
+    box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4); /* Sombra mais amarelada/laranja para o aviso */
+    animation: pulse 2s infinite ease-in-out; /* Mantém a animação de pulso */
+    pointer-events: none; /* Impede qualquer interação de clique */
+}
+
+/* Remover hover do botão de aviso, se ele usar as mesmas classes do btn normal */
+.btn-warning:hover {
+    background: var(--secondary-color); /* Mantém a cor */
+    transform: translateY(0) scale(1); /* Desativa o efeito de levantar/zoom no hover */
+    box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4); /* Mantém a sombra de aviso */
+    animation: pulse 2s infinite ease-in-out; /* Mantém a animação de pulso */
+}
+
+/* --- Seção de Projetos --- */
 .projetos {
-    padding: 10rem 2rem;
-}
-
-.projetos-caixa {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.projetos-card {
-        display: flex;
-        flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        overflow: hidden;
-}
-
-.projetos-card:hover {
-    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
-    transform: translateY(-10px) scale(1.03);
+    background-color: var(--bg-dark); /* Fundo preto para a seção */
 }
 
 .projetos-titulo {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 50px;
+    font-size: 3.5rem; /* Título maior */
+    margin-bottom: 60px; /* Mais espaço */
+    color: var(--text-light);
+    text-shadow: 0 0 15px rgba(255,255,255,0.2);
 }
 
-.caixa-texto-projeto {
-    padding: 1.5rem;
+.projetos-caixa {
+    display: grid;
+    /* Ajustado para auto-fit e minmax para melhor responsividade */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 2.5rem; /* Levemente reduzido o gap para dar mais espaço aos cards */
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o grid */
+    padding: 0 10px; /* Pequeno padding horizontal para não colar nas bordas em telas pequenas */
+    align-items: stretch; /* Garante que os itens da grid se estiquem para preencher a altura da célula */
+}
+
+.projetos-card {
+    display: flex;
+    flex-direction: column; /* Força os itens internos a se empilharem */
+    background-color: var(--bg-darker); /* Fundo mais escuro para o card */
+    border-radius: 12px; /* Mais arredondado */
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    border: 1px solid transparent; /* Para a borda no hover */
+    position: relative;
+    height: 100%; /* Garante que o card ocupe 100% da altura da sua célula na grid */
+}
+
+.projetos-card::before { /* Overlay roxo no hover */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(138, 43, 226, 0.25); /* Roxo transparente mais forte */
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+}
+
+.projetos-card:hover::before {
+    opacity: 1;
+}
+
+.projetos-card:hover {
+    box-shadow: 0 12px 25px rgba(138, 43, 226, 0.7); /* Sombra mais forte e roxa no hover */
+    transform: translateY(-12px) scale(1.02); /* Mais levantamento e zoom */
+    border-color: var(--secondary-color); /* Borda roxa no hover */
 }
 
 .projetos-imagem {
-    height: 50%;
-    width: 100%;
-    object-fit: cover;
-
+    width: 100%; /* Importante para a imagem preencher a largura do card */
+    height: 250px; /* Altura fixa para as imagens dos projetos */
+    object-fit: cover; /* Recorta a imagem para preencher sem distorcer */
+    border-bottom: 1px solid var(--accent-color); /* Linha roxa na parte inferior da imagem */
+    transition: transform 0.4s ease;
+    display: block; /* Remove espaço extra abaixo da imagem */
 }
 
-.paragrafo-projetos {
-    color: rgba(226, 232, 240, 0.8);
-    line-height: 1.25rem;
+.projetos-card:hover .projetos-imagem {
+    transform: scale(1.08); /* Zoom sutil na imagem do projeto */
+}
+
+.caixa-texto-projeto {
+    padding: 1.8rem; /* Mais padding */
+    color: var(--text-light);
+    position: relative; /* Para garantir que o texto fique acima do overlay */
+    z-index: 2;
+    flex-grow: 1; /* Permite que o conteúdo do texto cresça para preencher o espaço */
+    display: flex; /* Adicionado para alinhar o texto e links dentro do card */
+    flex-direction: column;
+    justify-content: space-between; /* Para empurrar links para a base do card */
+    overflow: hidden; /* Corta qualquer conteúdo que transborde */
 }
 
 .info-projetos {
-    margin-bottom: 5px;
+    font-size: 1.5rem; /* Título do projeto dentro do card */
+    color: var(--secondary-color);
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
-.contatos {
-    padding: 6rem 2rem;
+.paragrafo-projetos {
+    color: var(--text-dark); /* Texto mais escuro para a descrição */
+    line-height: 1.5rem; /* Melhor espaçamento da linha */
+    margin-top: 10px;
+    
+    /* LIMITAR LINHAS DE TEXTO */
+    display: -webkit-box; /* Essencial para que o -webkit-line-clamp funcione */
+    -webkit-line-clamp: 4; /* Limita o texto a 4 linhas. Ajuste este número conforme necessário. */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona "..." se o texto for cortado */
+    margin-bottom: 15px; /* Espaço antes dos links */
 }
 
-.contatos-titulos {
+.project-links { /* Classe adicionada para os links de demo/código */
+    margin-top: auto; /* Empurra os links para o final da caixa-texto-projeto */
+    display: flex;
+    justify-content: center; /* Centraliza os botões de link */
+    gap: 10px;
+    flex-shrink: 0; /* Garante que os links não encolham */
+}
+
+/* --- Seção de Habilidades --- */
+.skills {
+    background-color: var(--bg-dark); /* Fundo para a seção de habilidades */
+    padding-bottom: 5rem; /* Um pouco mais de espaço no final */
+}
+
+.skills h2 {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-size: 3.5rem;
+    margin-bottom: 4rem; /* Mais espaço abaixo do título */
+    color: var(--text-light);
+    text-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Ajusta o número de colunas */
+    gap: 1.5rem; /* Espaçamento entre os itens */
+    max-width: 1000px; /* Largura máxima para o grid */
+    margin: 0 auto; /* Centraliza o grid */
+    padding: 0 15px; /* Pequeno padding nas laterais */
+    justify-items: center; /* Centraliza os itens dentro de suas células */
+    align-items: center; /* Alinha os itens verticalmente no centro */
+}
+
+/* Estilos para cada item de habilidade */
+.skill-item {
+    background-color: var(--primary-color);
+    color: var(--light-text-color); /* Usando a nova variável */
+    padding: 12px 25px;
+    border-radius: 30px; /* Mais arredondado */
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-item::before { /* Efeito de brilho no hover */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Inicia fora da tela à esquerda */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.skill-item:hover::before {
+    left: 100%; /* Move para a direita no hover */
+}
+
+.skill-item:hover {
+    transform: translateY(-8px) scale(1.05); /* Levanta e aumenta um pouco */
+    background-color: var(--accent-color); /* Muda para roxo escuro no hover */
+    box-shadow: 0 8px 20px rgba(218, 112, 214, 0.5); /* Sombra mais forte no hover */
+}
+
+/* --- Seção de Contatos --- */
+.contatos {
+    background-color: var(--bg-darker); /* Fundo escuro para a seção */
+}
+
+.contatos-titulo {
+    text-align: center;
+    font-size: 3.5rem; /* Título maior */
+    margin-bottom: 3rem; /* Mais espaço */
+    color: var(--text-light);
+    text-shadow: 0 0 15px rgba(255,255,255,0.2);
 }
 
 .formulario-contato {
-    max-width: 600px;
-    margin: 0 auto;
-    background: var(--claro);
-    border-radius: 16px;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    padding: 2rem;
-    border: 1px solid var(--vidro);
-    border-radius: 16px;
+    max-width: 650px;
+    margin: 0 auto; /* Centraliza o formulário */
+    background: rgba(0, 0, 0, 0.4); /* Fundo mais transparente e escuro */
+    border-radius: 20px; /* Mais arredondado */
+    backdrop-filter: blur(12px); /* Desfoque intenso */
+    -webkit-backdrop-filter: blur(12px);
+    padding: 3rem; /* Mais padding interno */
+    border: 1px solid var(--glass-effect);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Sombra mais forte */
 }
 
 .campo-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 1rem;
+    display: block; /* Garante que cada input ocupe sua própria linha */
+    width: 100%; /* Ocupa a largura total do pai */
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    color: var(--claro);
-    border: 1px solid var(--vidro);
+    background: rgba(255, 255, 255, 0.08); /* Fundo claro e transparente para os campos */
+    border-radius: 10px; /* Mais arredondado */
+    color: var(--text-light);
+    border: 1px solid var(--primary-color); /* Borda roxa principal */
     outline: none;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem; /* Espaçamento entre os campos */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .campo-form:focus {
-    border-color: var(--claro);
+    border-color: var(--secondary-color); /* Borda roxa clara no focus */
+    box-shadow: 0 0 15px rgba(218, 112, 214, 0.6); /* Sombra roxa no focus */
+    background-color: rgba(255, 255, 255, 0.12); /* Levemente mais claro no focus */
 }
 
+/* Grupo de Formulário (se usar labels separadas dos inputs) */
 .grupo-form {
-    margin-bottom: 1.5rem;
-    box-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+    margin-bottom: 1.5rem; /* Espaçamento consistente */
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    color: var(--claro);
-    border: 1px solid var(--vidro);
+}
+
+.grupo-form label {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: left; /* Alinha o label à esquerda */
 }
 
 .botao-form {
-    color: var(--claro);
-    background: linear-gradient(45deg, var(--claro) (--secondary-color));
-    padding: 1rem 2rem;
+    color: var(--text-light);
+    background: var(--gradient-button); /* Gradiente para o botão */
+    padding: 1.2rem 2.5rem; /* Ajuste de padding */
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     width: 100%;
-    transition: all 0.5 ease;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
 }
 
 .botao-form:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 5px 15px var(--claro);
-     background-color: #1ebd5a;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(218, 112, 214, 0.6); /* Sombra mais forte no hover */
+    background: var(--gradient-purple); /* Muda o gradiente no hover */
 }
 
+/* --- Social Links --- */
+.social-links {
+    margin-top: 3rem; /* Espaço entre o formulário e os links */
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    justify-content: center; /* Centraliza os links */
+    gap: 2rem; /* Espaçamento entre os links */
+}
+
+.social-links a {
+    color: var(--secondary-color); /* Cor dos links */
+    text-decoration: none;
+    font-size: 1.3rem; /* Tamanho da fonte */
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2px solid var(--secondary-color); /* Borda */
+    border-radius: 50px; /* Borda arredondada (efeito pílula) */
+    transition: all 0.3s ease; /* Transição suave no hover */
+}
+
+.social-links a:hover {
+    background-color: var(--secondary-color); /* Fundo roxo no hover */
+    color: var(--bg-dark); /* Texto escuro no hover */
+    transform: translateY(-5px); /* Efeito de "levantar" */
+    box-shadow: 0 8px 20px rgba(218, 112, 214, 0.4); /* Sombra no hover */
+}
+
+/* --- Partículas de Fundo --- */
 .particulas {
     position: fixed;
     top: 0;
@@ -264,20 +593,148 @@ h1 {
     width: 100%;
     height: 100%;
     z-index: -1;
-    opacity: 0.5;
-    background: radial-gradient(circle at 10% 20%, var(--primary-color), transparent 20%),
-        radial-gradient(circle at 90% 80%, var(--secondary-color), transparent 20%),
-        var(--maisEscuro);
+    opacity: 0.6; /* Levemente mais opaco */
+    background: radial-gradient(circle at 15% 25%, var(--primary-color), transparent 25%), /* Posição ajustada */
+                radial-gradient(circle at 85% 75%, var(--secondary-color), transparent 25%), /* Posição ajustada */
+                var(--bg-darker); /* Fundo base para as partículas */
+    background-size: 200% 200%; /* Ajuste para o movimento */
+    animation: moveParticles 25s linear infinite alternate; /* Animação mais longa */
 }
 
-@keyframes flutuar {
+/* --- Rodapé (Footer) --- */
+.footer {
+    background-color: var(--bg-darker); /* Fundo escuro para o rodapé */
+    color: var(--text-dark); /* Cor do texto mais suave */
+    text-align: center;
+    padding: 2.5rem 1rem; /* Padding vertical e horizontal */
+    border-top: 1px solid var(--accent-color); /* Linha superior sutil */
+    font-size: 0.95rem; /* Tamanho da fonte um pouco menor */
+}
 
-    0%,
-    100% {
-        transform: translateY(0);
+.footer-conteudo {
+    max-width: 1200px; /* Limite de largura para centralizar o conteúdo */
+    margin: 0 auto;
+}
+
+.footer-conteudo p {
+    margin: 0.5rem 0; /* Espaçamento entre parágrafos, se houver mais de um */
+}
+
+.footer-conteudo a {
+    color: var(--secondary-color); /* Cor dos links no rodapé */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-conteudo a:hover {
+    color: var(--primary-color); /* Muda a cor no hover */
+    text-decoration: underline; /* Sublinha no hover */
+}
+
+/* --- Media Queries para Responsividade --- */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column; /* Empilha os links de navegação em telas menores */
+        gap: 1.5rem;
     }
 
-    50% {
-        transform: translateY(-20px);
+    .menu-link {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    .cabecalho-sub-titulo {
+        font-size: 1.3rem;
+    }
+
+    .foto-perfil {
+        width: 250px;
+        height: 250px;
+    }
+
+    .sobre-titulo, .projetos-titulo, .contatos-titulo, .skills h2 {
+        font-size: 2.8rem;
+    }
+
+    .sobre-caixa {
+        padding: 2rem;
+    }
+
+    .projetos-caixa, .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Um pouco menor para telas médias */
+        gap: 2rem; /* Reduzir o gap também em telas médias */
+    }
+
+    .formulario-contato {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navegacao {
+        padding: 1rem 0;
+    }
+
+    .menu {
+        gap: 1rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .cabecalho-sub-titulo {
+        font-size: 1.1rem;
+    }
+
+    .foto-perfil {
+        width: 200px;
+        height: 200px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+    }
+
+    .sobre-titulo, .projetos-titulo, .contatos-titulo, .skills h2 {
+        font-size: 2.2rem;
+    }
+
+    .sobre-paragrafo {
+        font-size: 1rem;
+    }
+
+    .projetos-imagem {
+        height: 200px;
+    }
+
+    .campo-form {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .botao-form {
+        padding: 1rem 2rem;
+    }
+    .skill-item {
+        font-size: 1rem; /* Ajusta a fonte para telas pequenas */
+        padding: 10px 20px;
+    }
+    .social-links {
+        flex-direction: column; /* Empilha os links em telas menores */
+        gap: 1rem;
+    }
+    .social-links a {
+        font-size: 1.1rem;
+        padding: 8px 15px;
     }
 }

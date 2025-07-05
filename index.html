@@ -4,90 +4,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portifolio</title>
+    <title>Maria Vitoria - Portfólio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="particulas"></div>
-    <div class="container">
-        <nav class="navegacao">
-            <ul class="menu">
-                <li>
-                    <a href="index.html" class="menu-link">Sobre Mim</a>
-                </li>
-                <li>
-                    <a href="projetos.html" class="menu-link">Projetos</a>
-                </li>
-                <li>
-                    <a href="contatos.html" class="menu-link">Contato</a>
-                </li>
-            </ul>
-    </div>
+
+    <nav class="navegacao">
+        <div class="logo">Maria Vitoria</div>
+        <ul class="menu">
+            <li>
+                <a href="#home" class="menu-link">Home</a>
+            </li>
+            <li>
+                <a href="#sobre" class="menu-link">Sobre Mim</a>
+            </li>
+            <li>
+                <a href="#projetos" class="menu-link">Projetos</a>
+            </li>
+            <li>
+                <a href="#skills" class="menu-link">Habilidades</a>
+            </li>
+            <li>
+                <a href="#contatos" class="menu-link">Contato</a>
+            </li>
+        </ul>
     </nav>
-    <header>
+
+    <header id="home" class="cabecalho">
         <div class="center">
             <img src="./img/perfil.png" alt="Foto de perfil" class="foto-perfil">
+            <h1>Maria Vitoria</h1>
+            <p class="cabecalho-sub-titulo">Desenvolvedora full stack</p>
+            <a href="#projetos" class="btn">Ver Projetos</a>
         </div>
-        <h1>Maria Vitoria</h1>
-        <p class=" cabecalho-sub-titulo">Desenvolvedora full stack</p>
     </header>
-    <main id="inicio" class="cabecalho">
+
+    <main>
         <section id="sobre" class="sobre">
             <h2 class="sobre-titulo">Sobre Mim</h2>
             <div class="sobre-caixa">
-                <p>
-                    Ola, sou uma pessoa muito dedicada e
-                    comprometida com o meu trabalho. Tenho um
-                    grande interesse em aprender e estou sempre
-                    em busca de novos conhecimentos e desafios.
-                    Gosto de trabalhar em equipe, pois acredito
-                    que a colaboração é fundamental para o
-                    crescimento mútuo.
+                <p class="sobre-paragrafo">
+                    Sou desenvolvedora fullstack com experiência em desenvolvimento web e mobile, atuando tanto no
+                    front-end, no back-end, banco de dados, web design e em engenheiro de software. E foco em
+                    desempenho, usabilidade e qualidade de código. Ofereço soluções completas com foco em eficiência,
+                    tecnologia atualizada e experiência do usuário.
                 </p>
+            </div>
+        </section>
+
+        <section id="projetos" class="projetos">
+            <h2 class="projetos-titulo">Meus Projetos</h2>
+            <div class="projetos-caixa">
+                <div class="projetos-card">
+                    <img src="img/projeto1.png" alt="Projeto 1" class="projetos-imagem" />
+                    <div class="caixa-texto-projeto">
+                        <p class="info-projetos">Fintech</p>
+                        <p class="paragrafo-projetos">Site para ensinar educação financeira para crianças, adolescentes,
+                            adultos e para pais ensinarem seus filhos.</p>
+                        <div class="project-links">
+                            <a href="https://fintech-future-site.vercel.app" target="_blank" class="btn">Ver Projeto</a>
+                            <a href="https://github.com/302781/fintech-future-site.git" target="_blank"
+                                class="btn">Código (GitHub)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="projetos-card">
+                    <img src="img/projeto 2.png" alt="Projeto 2" class="projetos-imagem" />
+                    <div class="caixa-texto-projeto">
+                        <p class="info-projetos">FreelaFlow</p>
+                        <p class="paragrafo-projetos">Site que ajuda freelancers de tecnologia a gerenciar seus projetos
+                            e
+                            tarefas de forma simples e eficiente.</p>
+                        <div class="project-links">
+                            <a href="https://soft-tech-flow.vercel.app" target="_blank" class="btn">Ver Projeto</a>
+                            <a href="https://github.com/302781/soft-tech-flow.git" target="_blank" class="btn">Código
+                                (GitHub)</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="projetos-card">
+                    <img src="img/projeto3.png" alt="Projeto 3" class="projetos-imagem" />
+                    <div class="caixa-texto-projeto">
+                        <p class="info-projetos">Immeerse Me</p>
+                        <p class="paragrafo-projetos">Site para aprender línguas estrangeiras com imersão cultural.</p>
+                        <div class="project-links">
+                            <button class="btn btn-warning">Projeto em Andamento</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="projetos-card">
+                    <img src="img/audiovisual.png" alt="Projeto 4" class="projetos-imagem" />
+                    <div class="caixa-texto-projeto">
+                        <p class="info-projetos">AudioVisual</p>
+                        <p class="paragrafo-projetos">Site de venda de equipamentos para fotos e videos.</p>
+                        <div class="project-links">
+                            <a href="https://audio-visual-commerce-site-gtin.vercel.app" target="_blank" class="btn">Ver
+                                Projeto</a>
+                            <a href="https://github.com/302781/audio-visual-commerce-site.git" target="_blank"
+                                class="btn">Código (GitHub)</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="projetos-card">
+                    <img src="img/Expresssa Visual.png" alt="Projeto 5" class="projetos-imagem" />
+                    <div class="caixa-texto-projeto">
+                        <p class="info-projetos">Expressa Visual</p>
+                        <p class="paragrafo-projetos">Site que adivinha a sua idade, humor e sexualidade</p>
+                        <div class="project-links">
+                            <a href="https://o-expressa-analise.vercel.app" target="_blank" class="btn">Ver Projeto</a>
+                            <a href="https://github.com/302781/o-expressa-analise.git" target="_blank"
+                                class="btn">Código (GitHub)</a>
+                        </div>
+                    </div>
+                    <div class="projetos-card">
+                        <img src="img/contruseco.png" alt="Projeto 6" class="projetos-imagem" />
+                        <div class="caixa-texto-projeto">
+                            <p class="info-projetos">ConstruSeco</p>
+                            <p class="paragrafo-projetos">Site para quem precisa de um projetos de arquitetura com valor
+                                acessivel.</p>
+                            <div class="project-links">
+                                <a href="https://dry-wall-sales-bot.vercel.app" target="_blank" class="btn">Ver
+                                    Projeto</a>
+                                <a href="https://github.com/302781/dry-wall-sales-bot.git" target="_blank"
+                                    class="btn">Código (GitHub)</a>
+                            </div>
+                        </div>
+                        <div class="projetos-card">
+                        <img src="img/formulário .png" alt="Projeto 7" class="projetos-imagem" />
+                        <div class="caixa-texto-projeto">
+                            <p class="info-projetos">Formulario</p>
+                            <p class="paragrafo-projetos">Formulario de contato</p>
+                            <div class="project-links">
+                                <a href="https://click-convert-landing-page.vercel.app" target="_blank" class="btn">Ver
+                                    Projeto</a>
+                                <a href="https://github.com/302781/click-convert-landing-page.git" target="_blank"
+                                    class="btn">Código (GitHub)</a>
+                            </div>
+                        </div>
+                    </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2>Minhas Habilidades</h2>
+            <div class="skills-grid">
+                <div class="skill-item">HTML5</div>
+                <div class="skill-item">CSS3</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">React / Vue</div>
+                <div class="skill-item">Git & GitHub</div>
+            </div>
+        </section>
+
+        <section id="contatos" class="contatos">
+            <h2 class="contatos-titulo">Contato</h2>
+            <form class="formulario-contato" id="formulario" onsubmit="enviarWhats(event)">
+                <div class="grupo-form">
+                    <label for="nome">Nome:</label>
+                    <input placeholder="Seu Nome" class="campo-form" id="nome" type="text" required>
+                </div>
+                <div class="grupo-form">
+                    <label for="email">Email:</label>
+                    <input placeholder="Seu Email" class="campo-form" id="email" type="email" required>
+                </div>
+                <div class="grupo-form">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea class="campo-form" placeholder="Digite sua mensagem" rows="4" id="mensagem"
+                        required></textarea>
+                </div>
+                <button type="submit" class="botao-form">Enviar WhatsApp</button>
+            </form>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/maria-vitória-9865b7284/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/302781" target="_blank">GitHub</a>
+                <a href="mailto:mariavitoru349@gmail.com" target="_blank">Email</a>
+            </div>
         </section>
     </main>
-    </div>
-    <section class="projetos">
-        <h2 class="projetos-titulo">Meus Projetos</h2>
-        <div class="projetos-caixa">
-            <div class="projetos-card">
-                <img src="img/projeto1.png" alt="Projeto 1" class="projetos-imagem" />
-                <div class="caixa-texto-projeto">
-                    <p class="info-projetos">Fintech</p>
-                    <p class="paragrafo-projetos">Site para ensinar educaçao financeira para crianças, adolecentes, adultos e para pais ensinarem seus filhos.</p>
-                </div>
-            </div>
-            <div class="projetos-card">
-                <img src="img/projeto 2.png" alt="Projeto 2" class="projetos-imagem" />
-                <div class="caixa-texto-projeto">
-                    <p class="info-projetos">FreelaFlow</p>
-                    <p class="paragrafo-projetos">Site que ajuda freelancers de tecnologia a gerenciar seus projetos e tarefas de forma simples e eficiente.</p>
-                </div>
-            </div>
-            <div class="projetos-card">
-                <img src="img/projeto3.png" alt="Projeto 3" class="projetos-imagem" />
-                <div class="caixa-texto-projeto">
-                    <p class="info-projetos">Immeerse Me</p>
-                    <p class="paragrafo-projetos">Site para aprender linguas estrangeiras com imersao cultural.</p>
-                </div>
-            </div>
-    </section>
-    <section id="contatos" class="contatos">
-        <h2 class="contatos-titulo" style="text-align: center">Contato<h2>
-                <form class="formulario-contato" id="formulario" onsubmit="enviarWhats(event)">
-                     <form class="contato-form">
-                    <div class="grupo-form">
-                        <input placeholder="Nome" class="campo-form" id="nome">
-                    </div>
-                    <div>
-                        <textarea class="grupo-form" placeholder="Digite sua mensagem" rows="4" id="mensagem"></textarea>
-                    </div>
-                    <button type="submit" class="botao-form ">Enviar Whatssap </button>
+    <footer>
+        <p>&copy; 2025 Maria Vitoria. Todos os direitos reservados.</p>
+    </footer>
 
-                </form>
-                 </form>
-    </section>
-   <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
