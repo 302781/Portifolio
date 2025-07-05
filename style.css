@@ -1,4 +1,4 @@
-/* Reset Básico e Box-Sizing Universal */
+/* Box-Sizing Universal */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -275,6 +275,7 @@ h1 {
     text-transform: uppercase; /* Texto em maiúsculas */
     letter-spacing: 1px;
     cursor: pointer;
+    text-decoration: none; /* Garante que links se pareçam com botões */
 }
 
 .btn:hover {
@@ -323,20 +324,20 @@ h1 {
     max-width: 1200px;
     margin: 0 auto; /* Centraliza o grid */
     padding: 0 10px; /* Pequeno padding horizontal para não colar nas bordas em telas pequenas */
-    align-items: stretch; /* Garante que os itens da grid se estiquem para preencher a altura da célula */
+    align-items: stretch; /* Essencial: Garante que os itens da grid se estiquem para preencher a altura da célula */
 }
 
 .projetos-card {
     display: flex;
-    flex-direction: column; /* Força os itens internos a se empilharem */
+    flex-direction: column; /* Essencial: Força os itens internos a se empilharem */
     background-color: var(--bg-darker); /* Fundo mais escuro para o card */
     border-radius: 12px; /* Mais arredondado */
-    overflow: hidden;
+    overflow: hidden; /* Corta qualquer conteúdo que transborde do card */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
     transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     border: 1px solid transparent; /* Para a borda no hover */
     position: relative;
-    height: 100%; /* Garante que o card ocupe 100% da altura da sua célula na grid */
+    height: 100%; /* Essencial: Garante que o card ocupe 100% da altura da sua célula na grid */
 }
 
 .projetos-card::before { /* Overlay roxo no hover */
@@ -369,6 +370,7 @@ h1 {
     border-bottom: 1px solid var(--accent-color); /* Linha roxa na parte inferior da imagem */
     transition: transform 0.4s ease;
     display: block; /* Remove espaço extra abaixo da imagem */
+    flex-shrink: 0; /* Impede que a imagem encolha */
 }
 
 .projetos-card:hover .projetos-imagem {
@@ -380,11 +382,13 @@ h1 {
     color: var(--text-light);
     position: relative; /* Para garantir que o texto fique acima do overlay */
     z-index: 2;
-    flex-grow: 1; /* Permite que o conteúdo do texto cresça para preencher o espaço */
-    display: flex; /* Adicionado para alinhar o texto e links dentro do card */
+    flex-grow: 1; /* Essencial: Permite que esta caixa ocupe todo o espaço disponível dentro do card */
+    display: flex; 
     flex-direction: column;
-    justify-content: space-between; /* Para empurrar links para a base do card */
+    justify-content: space-between; /* Essencial: Empurra os links para a base do card, distribuindo o espaço */
     overflow: hidden; /* Corta qualquer conteúdo que transborde */
+    /* Adicionado para garantir um tamanho mínimo da área de texto */
+    min-height: 150px; /* Defina uma altura mínima para o bloco de texto, ajuste se necessário */
 }
 
 .info-projetos {
@@ -392,6 +396,7 @@ h1 {
     color: var(--secondary-color);
     margin-bottom: 8px;
     font-weight: bold;
+    flex-shrink: 0; /* Garante que o título não encolha */
 }
 
 .paragrafo-projetos {
@@ -406,10 +411,12 @@ h1 {
     overflow: hidden;
     text-overflow: ellipsis; /* Adiciona "..." se o texto for cortado */
     margin-bottom: 15px; /* Espaço antes dos links */
+    flex-grow: 1; /* Permite que o parágrafo cresça, mas será limitado pelo clamp e overflow */
+    flex-shrink: 1; /* Permite que o parágrafo encolha, se necessário */
 }
 
 .project-links { /* Classe adicionada para os links de demo/código */
-    margin-top: auto; /* Empurra os links para o final da caixa-texto-projeto */
+    margin-top: auto; /* Essencial: Empurra os links para o final da caixa-texto-projeto */
     display: flex;
     justify-content: center; /* Centraliza os botões de link */
     gap: 10px;
