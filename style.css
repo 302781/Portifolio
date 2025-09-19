@@ -1,19 +1,15 @@
-/* Box-Sizing Universal */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-/* Base HTML para scroll-behavior e overflow */
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden; /* Garante que não haja rolagem horizontal na página inteira, a menos que seja intencional */
+    overflow-x: hidden; 
 }
 
-/* Variáveis CSS: Cores e Fontes */
 :root {
-    --primary-color: #8A2BE2; /* Roxo vibrante (Blue Violet) */
+    --primary-color: #8A2BE2; 
     --secondary-color: #DA70D6; /* Roxo mais claro/rosa para destaque (Orchid) */
     --accent-color: #4B0082; /* Roxo escuro, quase anil (Indigo) */
     --text-light: #ffffff; /* Texto claro para fundos escuros */
@@ -31,7 +27,6 @@ html {
     --light-text-color: #ffffff; /* Usada em skill-item */
 }
 
-/* Estilos Globais do Body */
 body {
     font-family: var(--font-body);
     line-height: 1.6;
@@ -40,7 +35,6 @@ body {
     overflow-x: hidden; /* Mantém a prevenção de rolagem horizontal */
 }
 
-/* Estilo Padrão para Todas as Seções */
 section {
     padding: 8rem 2rem; /* Padding padrão para todas as seções */
     max-width: 1200px; /* Largura máxima para centralização */
@@ -303,7 +297,44 @@ h1 {
     animation: pulse 2s infinite ease-in-out; /* Mantém a animação de pulso */
 }
 
-/* --- Seção de Projetos --- */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #E0EEEE;
+    border: solid 2px #5F9EA0;
+    border-radius: 10px;
+    padding: 0 5px; /* Adiciona um pequeno espaçamento interno */
+    width: 350px; /* Largura total da barra de pesquisa */
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px; /* Espaço entre o ícone e o campo de texto */
+}
+
+.search-input {
+    flex-grow: 1; /* Permite que o campo de input ocupe o espaço restante */
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    height: 100%; /* Ajusta a altura para o container pai */
+    color: #333; /* Cor de texto mais escura para melhor contraste */
+}
+
+.search-button {
+    background-color: #5F9EA0;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 7px; /* Cantos arredondados */
+    height: 32px; /* Altura do botão */
+    padding: 0 15px; /* Espaço interno para o texto do botão */
+    cursor: pointer;
+    margin-left: 8px; /* Espaço entre o input e o botão */
+}
+
 .projetos {
     background-color: var(--bg-dark); /* Fundo preto para a seção */
 }
