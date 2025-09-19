@@ -641,7 +641,7 @@ h1 {
 /* --- Media Queries para Responsividade --- */
 @media (max-width: 768px) {
     .menu {
-        flex-direction: column; /* Empilha os links de navegação em telas menores */
+        flex-direction: column-reverse;
         gap: 1.5rem;
     }
 
@@ -689,10 +689,12 @@ h1 {
 @media (max-width: 480px) {
     .navegacao {
         padding: 1rem 0;
+        
     }
 
     .menu {
         gap: 1rem;
+        flex-direction: column-reverse;
     }
 
     h1 {
@@ -737,7 +739,7 @@ h1 {
         padding: 10px 20px;
     }
     .social-links {
-        flex-direction: column; /* Empilha os links em telas menores */
+        flex-direction: column-reverse; 
         gap: 1rem;
     }
     .social-links a {
