@@ -292,9 +292,10 @@ h1 {
 /* Remover hover do botão de aviso, se ele usar as mesmas classes do btn normal */
 .btn-warning:hover {
     background: var(--secondary-color); /* Mantém a cor */
-    /*transform: translateY(0) scale(1); /* Desativa o efeito de levantar/zoom no hover */
+    transform: translateY(0) scale(1); /* Desativa o efeito de levantar/zoom no hover */
     box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4); /* Mantém a sombra de aviso */
     animation: pulse 2s infinite ease-in-out; /* Mantém a animação de pulso */
+    pointer-events: none;
 }
 
 .search-bar {
